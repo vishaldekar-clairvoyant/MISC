@@ -63,12 +63,17 @@ public class DemoController {
         return new ResponseEntity<Token>(token , HttpStatus.OK);
     }
 
+
     @PostMapping("/html-to-byte-array")
-    public ResponseEntity<byte[]> getPdfAsStream(@RequestParam String hostname,@RequestBody String domString) throws IOException, InterruptedException {
-        hostname = URLDecoder.decode(hostname, "UTF-8");
-        Pdf pdf = htmlToPdfService.generateReportForDownload(hostname,domString);
-        InputStream inputStream = new ByteArrayInputStream(pdf.getPDF());
-        return new ResponseEntity<>(inputStream.readAllBytes(),HttpStatus.OK);
+    public ResponseEntity<byte[]> getPdfAsStream(@RequestParam String hostname,@RequestBody String domString) throws Exception {
+        try {
+            hostname = URLDecoder.decode(hostname, "UTF-8");
+            Pdf pdf = htmlToPdfService.generateReportForDownload(hostname,domString);
+            InputStream inputStream = new ByteArrayInputStream(pdf.getPDF());
+            return new ResponseEntity<>(inputStream.readAllBytes(),HttpStatus.OK);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
 

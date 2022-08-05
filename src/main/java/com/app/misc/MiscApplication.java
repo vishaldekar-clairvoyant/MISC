@@ -17,8 +17,8 @@ public class MiscApplication {
 
 	@Bean
 	public AmazonSNS getSnsClient() {
-		BasicAWSCredentials basicAwsCredentials = new BasicAWSCredentials("AKIATAHTGZKZL35ZVU2K",
-				"aQtQ+raQDyz3sULhi3OrbIbCnOtzDOPkaCWXBCQm");
+		BasicAWSCredentials basicAwsCredentials = new BasicAWSCredentials("",
+				"");
 		return AmazonSNSClient
 				.builder()
 				.withRegion("ap-south-1")
